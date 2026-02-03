@@ -7,28 +7,28 @@ def main():
 
 
 def is_valid(s):
-    if s.isalnum() == True:
-        if len(s) == 6:
-            if s[4].isalpha() == False:
-                if s[5].isalpha() == False:
-                    if s[1].isalpha() == True:
-                        if s[2].isalpha() == True:
-                            if s[3].isalpha() == True:
-                                return True
-                            else:
-                                return False
-                        else:
-                            return False
-                    else:
-                        return False
-                else:
-                    return False
-            else:
-                return False
-        else: 
-            return False
-    else:
+    if not s.isalnum():
         return False
+    if len(s) < 2 or len(s) > 6:
+        return False
+    if s[0].isalpha() == False or s[1].isalpha() == False:
+        return False
+
+    check_letra = False
+
+    for letter in s:
+        if letter.isdigit():
+            if check_letra == False:
+                check_letra = True
+                if letter == "0":
+                    return False
+        else:
+            if check_letra == True:
+                return False
+
+    else:
+        return True
+
 
 main()
 
