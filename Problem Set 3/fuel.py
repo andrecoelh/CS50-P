@@ -8,9 +8,9 @@ def main():
         else:
             break
 
-    if percent == 0:
+    if percent <= 1:
         print("E")
-    elif percent == 100:
+    elif percent >= 99:
         print("F")
     else:
         print(f"{percent}%")
@@ -21,7 +21,11 @@ def convert(fraction):
         try:
             x = int(fraction[0])
             y = int(fraction[1])
-            z = int((x / y) * 100)
+            if x < 0 or y < 0:
+                return None
+            z = round((x / y) * 100)
+            if z > 100:
+                return None
         except (ZeroDivisionError, ValueError, IndexError):
             return None
         else:
